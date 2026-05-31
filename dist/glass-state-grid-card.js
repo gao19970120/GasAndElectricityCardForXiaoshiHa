@@ -810,7 +810,6 @@ class  GlassStateGridCard extends LitElement {
     this._balanceLoading = false;
     this._balanceRefreshInterval = null;
     this._selectedBalanceEntity = '';
-    this._primeGlassHost();
   }
 
   _primeGlassHost() {
@@ -822,6 +821,7 @@ class  GlassStateGridCard extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this._primeGlassHost();
     this._loadBalanceData();
     this.updateComplete.then(() => this._renderActiveChart());
     
@@ -4883,7 +4883,9 @@ class GlassStateGridButton extends LitElement {
     const popupTransform = popupTop === '50%' ? 'translate(-50%, -50%)' : 'translateX(-50%)';
 
     const popup = document.createElement('div');
-    popup.style.cssText = `position: fixed; top: ${popupTop}; left: 50%; transform: ${popupTransform}; z-index: 1005; background: transparent; padding: 0; width: ${popupWidth}; max-width: 100vw; max-height: 100vh; overflow: hidden; box-sizing: border-box; animation: glassStateGridButtonPopupIn 0.2s ease-out;`;
+    popup.style.cssText = `position: fixed; top: ${popupTop}; left: 50%; transform: ${popupTransform}; z-index: 1005; background: linear-gradient(180deg, rgba(22, 37, 56, 0.50), rgba(9, 18, 31, 0.38)); border-radius: 24px; padding: 0; width: ${popupWidth}; max-width: 100vw; max-height: 100vh; overflow: hidden; box-sizing: border-box; animation: glassStateGridButtonPopupIn 0.2s ease-out;`;
+    popup.style.setProperty('--ha-card-background', 'transparent');
+    popup.style.setProperty('--card-background-color', 'transparent');
 
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
@@ -4902,7 +4904,6 @@ class GlassStateGridButton extends LitElement {
         cardElement.style.background = 'transparent';
         cardElement.style.setProperty('--ha-card-background', 'transparent');
         cardElement.style.setProperty('--card-background-color', 'transparent');
-        cardElement.style.setProperty('--glass-card-bg', 'linear-gradient(180deg, rgba(22, 37, 56, 0.50), rgba(9, 18, 31, 0.38))');
         cardElement.hass = hassObj;
         container.appendChild(cardElement);
         this._popupCardElement = cardElement;

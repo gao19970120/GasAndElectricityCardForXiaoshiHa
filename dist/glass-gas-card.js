@@ -795,7 +795,6 @@ class GasBalanceCard extends LitElement {
     this._balanceLoading = false;
     this._balanceRefreshInterval = null;
     this._selectedBalanceEntity = '';
-    this._primeGlassHost();
   }
 
   _primeGlassHost() {
@@ -807,6 +806,7 @@ class GasBalanceCard extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this._primeGlassHost();
     this._loadBalanceData();
     this.updateComplete.then(() => this._renderActiveChart());
     

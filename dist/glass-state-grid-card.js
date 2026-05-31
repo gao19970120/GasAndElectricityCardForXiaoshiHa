@@ -3991,7 +3991,8 @@ class  GlassStateGridCard extends LitElement {
     const BgColor = 'linear-gradient(180deg, rgba(22, 37, 56, 0.50), rgba(9, 18, 31, 0.38))';
     const BgColor2 = 'rgba(255, 255, 255, 0.07)';
     const Shadow = '0 1px 10px rgba(6, 14, 26, 0.32)';
-    const svgpath = theme === 'on' ? '/glass_energy_cards-local/icon/state-grid-on.svg' : '/glass_energy_cards-local/icon/state-grid-off.svg';
+    const assetBaseUrl = window.GlassEnergyCardsBaseUrl || '/hacsfiles/GasAndElectricityCardForXiaoshiHa/';
+    const svgpath = theme === 'on' ? `${assetBaseUrl}icon/state-grid-on.svg` : `${assetBaseUrl}icon/state-grid-off.svg`;
 
     // 使用选中的余额实体而不是固定的this.entity
     const selectedEntityId = this._selectedBalanceEntity;

@@ -8,7 +8,7 @@
 
 本卡片修改自 xiaoshi 相关 Home Assistant 卡片/集成，主要调整为透明液态玻璃风格，并优化了图表显示、触屏交互和低性能设备上的渲染流畅度。
 
-为了避免影响原版集成，本项目使用独立的 `glass-*` 卡片名称和独立的 `glass_energy_cards` 前端资源路径，可以与原版卡片同时安装、同时使用。
+为了避免影响原版集成，本项目使用独立的 `glass-*` 卡片名称和独立的前端资源入口，可以与原版卡片同时安装、同时使用。
 
 ## 依赖
 
@@ -23,14 +23,41 @@
 - `custom:glass-state-grid-button`
 - `custom:glass-gas-card`
 
-## 安装方式
+## HACS 安装方式
 
-将 `custom_components/glass_energy_cards` 复制到 Home Assistant 的 `custom_components` 目录，然后重启 Home Assistant。
+在 HACS 中添加自定义仓库：
 
-集成会自动注册以下前端资源：
+- 仓库地址：`https://github.com/gao19970120/GasAndElectricityCardForXiaoshiHa`
+- 类别选择：`前端` / `Frontend` / `Dashboard`
 
-- `/glass_energy_cards-local/glass-state-grid-card.js`
-- `/glass_energy_cards-local/glass-gas-card.js`
+安装后，HACS 会将前端资源放到 `www/community/GasAndElectricityCardForXiaoshiHa`，并使用如下资源地址：
+
+```yaml
+url: /hacsfiles/GasAndElectricityCardForXiaoshiHa/GasAndElectricityCardForXiaoshiHa.js
+type: module
+```
+
+如果 HACS 没有自动添加资源，可以在 Home Assistant 的“设置 -> 仪表盘 -> 资源”中手动添加上面的资源地址。
+
+## 手动安装方式
+
+将本仓库 `dist` 目录内的所有文件复制到 Home Assistant 的 `www/community/GasAndElectricityCardForXiaoshiHa` 目录。
+
+然后在 Home Assistant 的“设置 -> 仪表盘 -> 资源”中添加：
+
+```yaml
+url: /hacsfiles/GasAndElectricityCardForXiaoshiHa/GasAndElectricityCardForXiaoshiHa.js
+type: module
+```
+
+如果没有安装 HACS，也可以使用 Home Assistant 的本地资源路径：
+
+```yaml
+url: /local/community/GasAndElectricityCardForXiaoshiHa/GasAndElectricityCardForXiaoshiHa.js
+type: module
+```
+
+添加后清理浏览器缓存或强制刷新页面。
 
 ## 使用示例
 

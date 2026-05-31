@@ -764,6 +764,7 @@ class GasBalanceCard extends LitElement {
 
   setConfig(config) {
     this.config = config;
+    this._primeGlassHost();
     if (config) {
       if (config.width !== undefined) this.width = config.width;
       if (config.year !== undefined) this.year = config.year;
@@ -783,7 +784,7 @@ class GasBalanceCard extends LitElement {
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;
     this.width = '380px';
-    this.theme = 'on';
+    this.theme = 'off';
     this.dayData = [];
     this.activeNav = '';
     this.monthData = null;
@@ -794,6 +795,14 @@ class GasBalanceCard extends LitElement {
     this._balanceLoading = false;
     this._balanceRefreshInterval = null;
     this._selectedBalanceEntity = '';
+    this._primeGlassHost();
+  }
+
+  _primeGlassHost() {
+    this.style.background = 'transparent';
+    this.style.setProperty('--ha-card-background', 'transparent');
+    this.style.setProperty('--card-background-color', 'transparent');
+    this.style.setProperty('--glass-card-bg', 'linear-gradient(180deg, rgba(22,37,56,0.50), rgba(9,18,31,0.38))');
   }
 
   connectedCallback() {
@@ -1035,6 +1044,10 @@ class GasBalanceCard extends LitElement {
     return css`
       :host {
         display: block;
+        background: transparent;
+        --ha-card-background: transparent;
+        --card-background-color: transparent;
+        --glass-card-bg: linear-gradient(180deg, rgba(22,37,56,0.50), rgba(9,18,31,0.38));
       }
       
       .card-header{
@@ -2913,7 +2926,7 @@ class GasBalanceCard extends LitElement {
   
   _evaluateTheme() {
     try {
-      if (!this.config || !this.config.theme) return 'on';
+      if (!this.config || !this.config.theme) return 'off';
       if (typeof this.config.theme === 'function') {
         return this.config.theme();
       }
@@ -2924,7 +2937,7 @@ class GasBalanceCard extends LitElement {
       return this.config.theme;
     } catch(e) {
       console.error('计算主题时出错:', e);
-      return 'on';
+      return 'off';
     }
   }
 
@@ -3088,7 +3101,7 @@ class GasBalanceCard extends LitElement {
     };
     
     // 获取主题和颜色
-    const theme = this.config.theme || 'on';
+    const theme = this.config.theme || 'off';
     const fgColor = theme === 'on' ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
     const bgColor = theme === 'on' ? 'rgb(255, 255, 255)' : 'rgb(50, 50, 50)';
     

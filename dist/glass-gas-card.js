@@ -1056,6 +1056,7 @@ class GasBalanceCard extends LitElement {
       }
 
       .card-main{
+        background: var(--glass-card-bg);
         border-radius: 24px;
         padding: 10px;
         padding-bottom: 0px;
@@ -1067,6 +1068,7 @@ class GasBalanceCard extends LitElement {
           0 18px 48px rgba(3, 10, 22, 0.22);
         backdrop-filter: blur(22px) saturate(135%);
         -webkit-backdrop-filter: blur(22px) saturate(135%);
+        transition: none;
       }
 
       .card-container {
@@ -3097,7 +3099,7 @@ class GasBalanceCard extends LitElement {
 
   renderHeader() {
     if (!this.hass) {
-      return html`<div>Loading...</div>`;
+      return html`<div class="card-main" style="background: var(--glass-card-bg); color: rgba(236,244,255,0.96); min-height: 390px; display: flex; align-items: center; justify-content: center;">Loading...</div>`;
     };
     
     // 获取主题和颜色
@@ -3185,7 +3187,7 @@ class GasBalanceCard extends LitElement {
     // 使用选中的余额实体而不是固定的this.entity
     const selectedEntityId = this._selectedBalanceEntity;
     if (!selectedEntityId || !this.hass || !this.hass.states[selectedEntityId]) {
-      return html`<div style="padding: 20px; text-align: center;">请选择有效的燃气实体</div>`;
+      return html`<div class="card-main" style="background: var(--glass-card-bg); color: rgba(236,244,255,0.96); min-height: 390px; display: flex; align-items: center; justify-content: center;">请选择有效的燃气实体</div>`;
     }
     
     const selectedEntity = this.hass.states[selectedEntityId];
@@ -3319,7 +3321,7 @@ class GasBalanceCard extends LitElement {
     const theme = this._evaluateTheme();
     const Color = 'rgba(236,244,255,0.96)';
     const Color2 = 'rgba(221,232,245,0.72)';
-    const BgColor = 'linear-gradient(180deg, rgba(22,37,56,0.50), rgba(9,18,31,0.38))';
+    const BgColor = 'var(--glass-card-bg)';
     const BgColor2 = 'rgba(255,255,255,0.07)';
     const Shadow = '0 1px 10px rgba(6,14,26,0.32)';
     const assetBaseUrl = window.GlassEnergyCardsBaseUrl || '/hacsfiles/GasAndElectricityCardForXiaoshiHa/';
@@ -3328,7 +3330,7 @@ class GasBalanceCard extends LitElement {
     // 使用选中的余额实体而不是固定的this.entity
     const selectedEntityId = this._selectedBalanceEntity;
     if (!selectedEntityId || !this.hass || !this.hass.states[selectedEntityId]) {
-      return html`<div>请选择有效的燃气实体</div>`;
+      return html`<div class="card-main" style="background: ${BgColor}; color: ${Color}; min-height: 390px; display: flex; align-items: center; justify-content: center;">请选择有效的燃气实体</div>`;
     }
     
     const selectedEntity = this.hass.states[selectedEntityId];

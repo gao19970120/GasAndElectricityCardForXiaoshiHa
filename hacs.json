@@ -1,0 +1,6 @@
+{
+  "name": "Glass Energy Cards",
+  "render_readme": true,
+  "domains": ["lovelace"],
+  "homeassistant": "2023.8.0"
+}
